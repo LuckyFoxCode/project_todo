@@ -1,6 +1,7 @@
 @import 'main';
 
 .button {
+  width: 100%;
   @include flex(center, center);
   @include text(rem(14px), 400, $GRAY);
   @include transition(color, box-shadow, background-color);
@@ -52,7 +53,7 @@
 
 .cancel {
   min-width: 90px;
-  background-color: $CANCEL;
+  background-color: $L_GRAY;
   @include transition(color, background-color);
   &:hover {
     color: $GREEN;

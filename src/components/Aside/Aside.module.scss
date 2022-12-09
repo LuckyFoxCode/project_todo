@@ -1,0 +1,26 @@
+@import 'main';
+
+.aside {
+  background-color: wheat;
+  width: 100%;
+  max-width: 200px;
+  height: 100vh;
+  padding: 20px;
+  background-color: $L_GRAY;
+  border-right: 2px solid #f1f1f1;
+
+  &Tasks {
+    @include flex(flex-start, center);
+    @include text(rem(16px), 400, $BLACK);
+    margin-bottom: 20px;
+    &:hover &Icon {
+      fill: $GREEN;
+    }
+    line-height: 118%;
+    &Icon {
+      @include svg(13px, #7c7c7c);
+      @include transition(fill);
+      margin-right: 6px;
+    }
+  }
+}
