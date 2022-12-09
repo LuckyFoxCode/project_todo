@@ -1,0 +1,24 @@
+//  FONTS
+
+@use 'sass:math';
+
+$BASE_FONT: 'Roboto', -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui, helvetica neue, helvetica,
+  Ubuntu, roboto, noto, arial, sans-serif;
+
+$SECOND_FONT: 'Work Sans', sans-serif;
+
+/* FONT SIZE */
+$BASE_FONT_SIZE: 10px;
+
+@function rem($size) {
+  $remSize: math.div($size, 10px);
+  @return #{$remSize}rem;
+}
+
+.a {
+  color: red;
+}
+
+.b {
+  color: aqua;
+}

@@ -1,0 +1,52 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+input,
+select,
+textarea,
+button {
+  font-family: $BASE_FONT;
+}
+
+html {
+  touch-action: manipulation;
+  height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  background-color: $BLACK;
+  color: $WHITE;
+}
+
+html {
+  font-size: $BASE_FONT_SIZE;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+button {
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+
+textarea,
+input[type='text'],
+input[type='address'],
+input[type='email'],
+input[type='password'] {
+  -appearance: none;
+  border-radius: 0;
+}
