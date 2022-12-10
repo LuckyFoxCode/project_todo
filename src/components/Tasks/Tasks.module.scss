@@ -1,0 +1,99 @@
+@import 'main';
+
+.tasks {
+  @include flex-col(flex-start, center);
+  margin-bottom: 30px;
+}
+
+// Task Item
+.taskItem {
+  width: 100%;
+  @include flex(flex-start, center);
+  padding: 10px;
+  border-radius: 4px;
+  @include transition(box-shadow, background-color);
+  cursor: pointer;
+  margin-bottom: 7px;
+  &:last-child {
+    margin-bottom: 0;
+  }
+  &:hover {
+    background-color: $WHITE;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
+  }
+
+  &:hover &Icon {
+    opacity: 1;
+  }
+
+  &Color {
+    @include size(10px);
+    border-radius: 50%;
+    background-color: $GREEN;
+    margin-right: 10px;
+  }
+
+  &Wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &Title {
+    @include text(rem(14px), 400, $BLACK);
+    line-height: 120%;
+    letter-spacing: 0.15px;
+  }
+
+  &Icon {
+    @include size(15px);
+    transform: rotate(45deg);
+    padding-top: 3px;
+    @include transition(opacity);
+    opacity: 0;
+    path {
+      @include transition(stroke);
+      stroke: #e3e3e3;
+    }
+    &:hover {
+      path {
+        stroke: $GREEN;
+      }
+    }
+  }
+}
+
+.active {
+  background-color: $WHITE;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.active:hover .taskItemIcon {
+  opacity: 1;
+}
+
+.n0 {
+  background-color: $N0;
+}
+.n1 {
+  background-color: $N1;
+}
+.n2 {
+  background-color: $N2;
+}
+.n3 {
+  background-color: $N3;
+}
+.n4 {
+  background-color: $N4;
+}
+.n5 {
+  background-color: $N5;
+}
+.n6 {
+  background-color: $N6;
+}
+.n7 {
+  background-color: $N7;
+}
