@@ -39,8 +39,6 @@ export const AddTask = ({ setShowAddTask, addFolderHandler }) => {
       checked: false,
     };
 
-    console.log();
-
     addFolderHandler(newTask);
     setShowAddTask(false);
   };
@@ -56,6 +54,7 @@ export const AddTask = ({ setShowAddTask, addFolderHandler }) => {
         placeholder='Название папки'
         value={inputTitle}
         onChange={onInputTitle}
+        required
       />
       <div className={styles.addTaskColors}>
         {(colors || []).map((item) => (

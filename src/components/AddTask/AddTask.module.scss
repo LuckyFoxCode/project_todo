@@ -49,11 +49,16 @@
     outline: none;
     padding: 7px 10px 8px;
     margin-bottom: 13px;
+    @include transition(border-color);
     &::placeholder {
       color: #c7c7c7;
     }
-    &:focus {
+    &:focus,
+    &:valid {
       border-color: $GREEN;
+    }
+    &:invalid {
+      border-color: crimson;
     }
   }
 
@@ -88,9 +93,5 @@
       @include transition(border-color);
       cursor: pointer;
     }
-
-    // .active {
-    //   border-color: #525252;
-    // }
   }
 }
