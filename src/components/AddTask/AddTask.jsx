@@ -3,7 +3,7 @@ import { Button, Icon } from '../UI/';
 import styles from './AddTask.module.scss';
 import { AddTaskColors } from './components/AddTaskColors/AddTaskColors';
 
-export const AddTask = ({ setShowAddTask }) => {
+export const AddTask = ({ setShowAddTask, addFolderHandler }) => {
   const [isSelected, setIsSelected] = useState('#c9d1d3');
   const [inputTitle, setInputTitle] = useState('');
   const [colors, setColors] = useState([
@@ -26,7 +26,7 @@ export const AddTask = ({ setShowAddTask }) => {
   };
 
   const checkedColorHandler = (e) => {
-    setIsSelected((prevState) => e.target.value);
+    setIsSelected((prevState) => (prevState = e.target.value));
   };
 
   const onSubmitHandler = (e) => {
@@ -39,7 +39,9 @@ export const AddTask = ({ setShowAddTask }) => {
       checked: false,
     };
 
-    console.log(newTask);
+    console.log();
+
+    addFolderHandler(newTask);
     setShowAddTask(false);
   };
 

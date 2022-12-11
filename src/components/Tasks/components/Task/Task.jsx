@@ -13,7 +13,7 @@ export const Task = ({ task }) => {
 
   return (
     <li className={classNames(styles.taskItem, checked && styles.active)}>
-      <div className={classNames(styles.taskItemColor, styles[color])} />
+      <div className={classNames(styles.taskItemColor)} style={{ backgroundColor: color }} />
       <div className={styles.taskItemWrapper}>
         <span className={styles.taskItemTitle}>{editedTitle}</span>
         <Icon name='plus' className={styles.taskItemIcon} onClick={deleteTaskHandler} />

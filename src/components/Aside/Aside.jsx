@@ -4,7 +4,7 @@ import { Tasks } from '../Tasks';
 import { Button, Icon } from '../UI/';
 import styles from './Aside.module.scss';
 
-export const Aside = ({ tasks }) => {
+export const Aside = ({ tasks, addFolderHandler }) => {
   const [showAddTask, setShowAddTask] = useState(false);
 
   const showAllTasksHandler = () => {
@@ -13,7 +13,6 @@ export const Aside = ({ tasks }) => {
 
   const addNewFolderHandler = () => {
     setShowAddTask(!showAddTask);
-    console.log('Add new folder.');
   };
 
   return (
@@ -29,7 +28,7 @@ export const Aside = ({ tasks }) => {
         <Button type='button' icon='plus' onClick={addNewFolderHandler}>
           Добавить папку
         </Button>
-        {showAddTask && <AddTask setShowAddTask={setShowAddTask} />}
+        {showAddTask && <AddTask setShowAddTask={setShowAddTask} addFolderHandler={addFolderHandler} />}
       </div>
     </aside>
   );
