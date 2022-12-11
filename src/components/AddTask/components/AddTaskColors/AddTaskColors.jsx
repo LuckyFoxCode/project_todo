@@ -1,19 +1,25 @@
 import classNames from 'classnames';
 import styles from '../../AddTask.module.scss';
 
-export const AddTaskColors = ({ colors }) => {
+export const AddTaskColors = ({ item, isSelected, checkedColorHandler }) => {
+  const { id, color, checked } = item;
+
   return (
-    <div className={styles.addTaskColors}>
-      {[] &&
-        colors.map((color) => (
-          <div
-            key={color.id}
-            className={classNames(styles.addTaskColorsWrap, color.checked && styles.active)}
-            style={{ backgroundColor: color.color }}>
-            <input type='checkbox' id='checkbox' className={styles.addTaskColorsCheckbox} />
-            <label htmlFor='checkbox' className={styles.addTaskColorsFakeCheckbox} />
-          </div>
-        ))}
+    <div className={styles.addTaskColor}>
+      <input
+        className={styles.addTaskColorInput}
+        type='radio'
+        name='radio'
+        id={id}
+        value={color}
+        checked={isSelected === color}
+        onChange={checkedColorHandler}
+      />
+      <label
+        className={classNames(styles.addTaskColorLabel, checked && styles.active)}
+        style={{ backgroundColor: color }}
+        htmlFor={id}
+      />
     </div>
   );
 };

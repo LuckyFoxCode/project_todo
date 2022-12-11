@@ -4,18 +4,18 @@ import styles from './AddTask.module.scss';
 import { AddTaskColors } from './components/AddTaskColors/AddTaskColors';
 
 export const AddTask = ({ setShowAddTask }) => {
-  const colors = [
-    { id: 'c0', color: '#c9d1d3', checked: false },
-    { id: 'c1', color: '#42b883', checked: true },
+  const [isSelected, setIsSelected] = useState('#c9d1d3');
+  const [inputTitle, setInputTitle] = useState('');
+  const [colors, setColors] = useState([
+    { id: 'c0', color: '#c9d1d3', checked: true },
+    { id: 'c1', color: '#42b883', checked: false },
     { id: 'c2', color: '#64c4ed', checked: false },
     { id: 'c3', color: '#ffbbcc', checked: false },
     { id: 'c4', color: '#b6e6bd', checked: false },
     { id: 'c5', color: '#c355f5', checked: false },
     { id: 'c6', color: '#09011a', checked: false },
     { id: 'c7', color: '#ff6464', checked: false },
-  ];
-
-  const [inputTitle, setInputTitle] = useState('');
+  ]);
 
   const closeModal = () => {
     setShowAddTask(false);
@@ -25,10 +25,21 @@ export const AddTask = ({ setShowAddTask }) => {
     setInputTitle(e.target.value);
   };
 
+  const checkedColorHandler = (e) => {
+    setIsSelected((prevState) => e.target.value);
+  };
+
   const onSubmitHandler = (e) => {
     e.preventDefault();
 
-    console.log(inputTitle);
+    const newTask = {
+      id: Math.random().toString(),
+      title: inputTitle,
+      color: isSelected,
+      checked: false,
+    };
+
+    console.log(newTask);
     setShowAddTask(false);
   };
 
@@ -44,7 +55,11 @@ export const AddTask = ({ setShowAddTask }) => {
         value={inputTitle}
         onChange={onInputTitle}
       />
-      <AddTaskColors colors={colors} />
+      <div className={styles.addTaskColors}>
+        {(colors || []).map((item) => (
+          <AddTaskColors key={item.id} item={item} checkedColorHandler={checkedColorHandler} isSelected={isSelected} />
+        ))}
+      </div>
       <Button type='submit' size='popup'>
         Добавить
       </Button>

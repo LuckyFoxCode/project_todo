@@ -61,30 +61,36 @@
     width: 100%;
     @include flex(space-between, center);
     margin-bottom: 13px;
+  }
 
-    &Wrap {
-      @include size(20px);
-      border-radius: 50%;
-      border: 2px solid transparent;
-      margin-right: 5px;
-      cursor: pointer;
-      &:last-child {
-        margin-right: 0;
-      }
+  &Color {
+    margin-right: 5px;
+    &:last-child {
+      margin-right: 0;
     }
 
-    &Checkbox {
+    &Input {
       position: absolute;
       z-index: -1;
       opacity: 0;
     }
 
-    &Checkbox:checked &Wrap {
+    &Input:checked + &Label {
       border-color: #525252;
     }
 
-    .active {
-      border-color: #525252;
+    &Label {
+      display: flex;
+      @include size(20px);
+      border-radius: 50%;
+      background-color: $N0;
+      border: 2px solid transparent;
+      @include transition(border-color);
+      cursor: pointer;
     }
+
+    // .active {
+    //   border-color: #525252;
+    // }
   }
 }
