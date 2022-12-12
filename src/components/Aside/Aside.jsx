@@ -18,17 +18,34 @@ export const Aside = ({ tasks, addFolderHandler }) => {
   return (
     <aside className={styles.aside}>
       {!!tasks.length && (
-        <Button type='button' className={styles.asideTasks} onClick={showAllTasksHandler}>
-          <Icon name='all' className={styles.asideTasksIcon} />
+        <Button
+          type='button'
+          className={styles.asideTasks}
+          onClick={showAllTasksHandler}
+        >
+          <Icon
+            name='all'
+            className={styles.asideTasksIcon}
+          />
           Все задачи
         </Button>
       )}
       <Tasks tasks={tasks} />
       <div className={styles.asideWrapper}>
-        <Button type='button' icon='plus' onClick={addNewFolderHandler}>
+        <Button
+          type='button'
+          icon='plus'
+          onClick={addNewFolderHandler}
+        >
           Добавить папку
         </Button>
-        {showAddTask && <AddTask setShowAddTask={setShowAddTask} addFolderHandler={addFolderHandler} />}
+        {showAddTask && (
+          <AddTask
+            setShowAddTask={setShowAddTask}
+            addFolderHandler={addFolderHandler}
+            showAddTask={showAddTask}
+          />
+        )}
       </div>
     </aside>
   );

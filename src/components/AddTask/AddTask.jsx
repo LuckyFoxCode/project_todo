@@ -1,9 +1,10 @@
 import { useState } from 'react';
+import { animated, config, useTransition } from 'react-spring';
 import { Button, Icon } from '../UI/';
 import styles from './AddTask.module.scss';
 import { AddTaskColors } from './components/AddTaskColors/AddTaskColors';
 
-export const AddTask = ({ setShowAddTask, addFolderHandler }) => {
+export const AddTask = ({ setShowAddTask, addFolderHandler, showAddTask }) => {
   const [isSelected, setIsSelected] = useState('#c9d1d3');
   const [inputTitle, setInputTitle] = useState('');
   const [colors, setColors] = useState([
@@ -16,6 +17,14 @@ export const AddTask = ({ setShowAddTask, addFolderHandler }) => {
     { id: 'c6', color: '#09011a', checked: false },
     { id: 'c7', color: '#ff6464', checked: false },
   ]);
+
+  const transitions = useTransition(showAddTask, {
+    from: { opacity: 0 },
+    enter: { opacity: 1 },
+    leave: { opacity: 0 },
+    reverse: showAddTask,
+    config: config.molasses,
+  });
 
   const closeModal = () => {
     setShowAddTask(false);
@@ -43,27 +52,47 @@ export const AddTask = ({ setShowAddTask, addFolderHandler }) => {
     setShowAddTask(false);
   };
 
-  return (
-    <form className={styles.addTask} onSubmit={onSubmitHandler}>
-      <div className={styles.addTaskWrapper}>
-        <Icon name='plus' className={styles.addTaskWrapperIcon} onClick={closeModal} />
-      </div>
-      <input
-        className={styles.addTaskInput}
-        type='text'
-        placeholder='Название папки'
-        value={inputTitle}
-        onChange={onInputTitle}
-        required
-      />
-      <div className={styles.addTaskColors}>
-        {(colors || []).map((item) => (
-          <AddTaskColors key={item.id} item={item} checkedColorHandler={checkedColorHandler} isSelected={isSelected} />
-        ))}
-      </div>
-      <Button type='submit' size='popup'>
-        Добавить
-      </Button>
-    </form>
+  return transitions(
+    (s, item) =>
+      item && (
+        <animated.div style={s}>
+          <form
+            className={styles.addTask}
+            onSubmit={onSubmitHandler}
+          >
+            <div className={styles.addTaskWrapper}>
+              <Icon
+                name='plus'
+                className={styles.addTaskWrapperIcon}
+                onClick={closeModal}
+              />
+            </div>
+            <input
+              className={styles.addTaskInput}
+              type='text'
+              placeholder='Название папки'
+              value={inputTitle}
+              onChange={onInputTitle}
+              required
+            />
+            <div className={styles.addTaskColors}>
+              {(colors || []).map((item) => (
+                <AddTaskColors
+                  key={item.id}
+                  item={item}
+                  checkedColorHandler={checkedColorHandler}
+                  isSelected={isSelected}
+                />
+              ))}
+            </div>
+            <Button
+              type='submit'
+              size='popup'
+            >
+              Добавить
+            </Button>
+          </form>
+        </animated.div>
+      ),
   );
 };
