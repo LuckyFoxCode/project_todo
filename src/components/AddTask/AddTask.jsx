@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { useState } from 'react';
 import { animated, config, useTransition } from 'react-spring';
 import { Button, Icon } from '../UI/';
@@ -7,6 +8,7 @@ import { AddTaskColors } from './components/AddTaskColors/AddTaskColors';
 export const AddTask = ({ setShowAddTask, addFolderHandler, showAddTask }) => {
   const [isSelected, setIsSelected] = useState('#c9d1d3');
   const [inputTitle, setInputTitle] = useState('');
+  const [isValid, setIsValid] = useState(false);
   const [colors, setColors] = useState([
     { id: 'c0', color: '#c9d1d3', checked: true },
     { id: 'c1', color: '#42b883', checked: false },
@@ -31,6 +33,12 @@ export const AddTask = ({ setShowAddTask, addFolderHandler, showAddTask }) => {
   };
 
   const onInputTitle = (e) => {
+    if (e.target.value.trim().length > 0) {
+      setIsValid(true);
+    } else {
+      setIsValid(false);
+    }
+
     setInputTitle(e.target.value);
   };
 
@@ -40,6 +48,11 @@ export const AddTask = ({ setShowAddTask, addFolderHandler, showAddTask }) => {
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
+
+    if (inputTitle.length === 0) {
+      setIsValid(false);
+      return;
+    }
 
     const newTask = {
       id: Math.random().toString(),
@@ -68,7 +81,10 @@ export const AddTask = ({ setShowAddTask, addFolderHandler, showAddTask }) => {
               />
             </div>
             <input
-              className={styles.addTaskInput}
+              className={classNames(
+                styles.addTaskInput,
+                !!isValid ? styles.addTaskInputValid : styles.addTaskInputInvalid,
+              )}
               type='text'
               placeholder='Название папки'
               value={inputTitle}
