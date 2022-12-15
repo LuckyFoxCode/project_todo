@@ -1,23 +1,32 @@
+import { useState } from 'react';
+import { Icon } from '../../../UI';
 import styles from '../../TodoList.module.scss';
-import { Icon } from "../../../UI";
-import { useState } from "react";
 
-export const TodoListItem = () => {
+export const TodoListItem = ({ task }) => {
+  const { title, checked } = task;
   const [isChecked, setIsChecked] = useState(false);
 
   const toggleCheckedHandler = () => {
     setIsChecked((prevState) => !prevState);
-  }
+  };
   return (
     <li className={styles.todoListItem}>
       <div className={styles.todoListItemInput}>
-        <input type="checkbox" id="icon" checked={isChecked} onChange={toggleCheckedHandler}/>
-        <label htmlFor="icon"/>
+        <input
+          type='checkbox'
+          id='icon'
+          checked={checked}
+          onChange={toggleCheckedHandler}
+        />
+        <label htmlFor='icon' />
       </div>
       <div className={styles.todoListItemWrap}>
-        <p className={styles.todoListItemWrapTitle}>Изучить JavaScript</p>
-        <Icon name="plus" className={styles.todoListItemWrapIcon}/>
+        <p className={styles.todoListItemWrapTitle}>{title}</p>
+        <Icon
+          name='plus'
+          className={styles.todoListItemWrapIcon}
+        />
       </div>
     </li>
-  )
-}
+  );
+};

@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import { useDispatch } from 'react-redux';
-import { removeTodoFolder } from '../../../../store/todoSlice';
+import { checkedTodoFolder, removeTodoFolder } from '../../../../store/todoSlice';
 import { Icon } from '../../../UI/';
 import styles from '../../Tasks.module.scss';
 
@@ -12,7 +12,10 @@ export const Task = ({ folder }) => {
   const editedTitle = title.length > 10 ? title.slice(0, 11) + '...' : title;
 
   return (
-    <li className={classNames(styles.taskItem, checked && styles.active)}>
+    <li
+      className={classNames(styles.taskItem, checked && styles.active)}
+      onClick={() => dispatch(checkedTodoFolder({ id }))}
+    >
       <div
         className={classNames(styles.taskItemColor)}
         style={{ backgroundColor: color }}

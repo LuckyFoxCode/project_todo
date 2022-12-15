@@ -9,12 +9,22 @@ const todoSlice = createSlice({
         color: '#42b883',
         title: 'Products',
         checked: false,
+        tasks: [
+          { id: 't1', title: 'Milk', checked: false },
+          { id: 't2', title: 'Bread', checked: true },
+          { id: 't3', title: 'Water', checked: false },
+        ],
       },
       {
         id: 't2',
         color: '#64c4ed',
         title: 'Front - End',
         checked: true,
+        tasks: [
+          { id: 't1', title: 'Film1', checked: false },
+          { id: 't2', title: 'Film2', checked: true },
+          { id: 't3', title: 'Film3', checked: false },
+        ],
       },
     ],
   },
@@ -31,8 +41,12 @@ const todoSlice = createSlice({
       state.todos = state.todos.filter((todo) => todo.id !== action.payload.id);
     },
     checkedTodoFolder(state, action) {
-      const checkedItem = state.todos.find((todo) => todo.id === action.payload.id);
-      checkedItem.checked = !checkedItem.checked;
+      // const checkedFolder = state.todos.find((todo) => todo.id === action.payload.id);
+      // checkedFolder.checked = !checkedFolder.checked;
+
+      state.todos.find((todo) =>
+        todo.id === action.payload.id ? (todo.checked = !todo.checked) : todo,
+      );
     },
   },
 });
