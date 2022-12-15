@@ -1,5 +1,23 @@
 @import 'main';
 
+.tasks {
+  &Title {
+    @include text(rem(32px), 700, $N2);
+    border-bottom: 1px solid #f2f2f2;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+  }
+  &Icon {
+    @include svg(15px, #dfdfdf);
+    @include transition(fill);
+    cursor: pointer;
+    margin-left: 15px;
+    &:hover {
+      fill: $GREEN;
+    }
+  }
+}
+
 .todoList {
   &Item {
     @include flex(flex-start, center);
@@ -12,7 +30,6 @@
     &Input {
       display: flex;
       margin-right: 15px;
-
 
       input {
         position: absolute;
@@ -29,7 +46,7 @@
         width: 20px;
         height: 20px;
         background-color: $WHITE;
-        border: 2px solid #E8E8E8;
+        border: 2px solid #e8e8e8;
         border-radius: 50%;
         cursor: pointer;
         @include transition(background-color, border-color);
@@ -63,6 +80,4 @@
       }
     }
   }
-
-
 }

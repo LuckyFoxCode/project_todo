@@ -1,11 +1,20 @@
-
+import { Icon } from '../UI';
+import { TodoListItem } from './components/TodoListItem';
 import styles from './TodoList.module.scss';
-import { TodoListItem } from "./components/TodoListItem";
 
 export const TodoList = () => {
   return (
-    <ul className={styles.todoList}>
-      <TodoListItem />
-    </ul>
-  )
+    <div className={styles.tasks}>
+      <h2 className={styles.tasksTitle}>
+        Фронтенд
+        <Icon
+          name='edit'
+          className={styles.tasksIcon}
+        />
+      </h2>
+      <ul className={styles.todoList}>
+        <TodoListItem />
+      </ul>
+    </div>
+  );
 };
