@@ -1,11 +1,13 @@
+import { useSelector } from 'react-redux';
+import { TodoList } from '../TodoList';
 import styles from './Main.module.scss';
-import { TodoList } from "../TodoList";
 
-export const Main = ({tasks}) => {
+export const Main = () => {
+  const todos = useSelector((state) => state.todos.todos);
   return (
     <main className={styles.main}>
-      {!tasks.length && <h2 className={styles.mainEmpty}>Задачи отсутствуют</h2>}
-      {tasks.length && <TodoList />}
+      {!todos.length && <h2 className={styles.mainEmpty}>Задачи отсутствуют</h2>}
+      {todos.length && <TodoList />}
     </main>
   );
 };

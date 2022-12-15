@@ -1,8 +1,11 @@
 import classNames from 'classnames';
+import { useDispatch } from 'react-redux';
 import styles from '../../AddTask.module.scss';
 
 export const AddTaskColors = ({ item, isSelected, checkedColorHandler }) => {
   const { id, color, checked } = item;
+
+  const dispatch = useDispatch();
 
   return (
     <div className={styles.addTaskColor}>

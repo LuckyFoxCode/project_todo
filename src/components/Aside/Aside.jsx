@@ -1,11 +1,14 @@
 import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { AddTask } from '../AddTask';
 import { Tasks } from '../Tasks';
 import { Button, Icon } from '../UI/';
 import styles from './Aside.module.scss';
 
-export const Aside = ({ tasks, addFolderHandler }) => {
+export const Aside = () => {
   const [showAddTask, setShowAddTask] = useState(false);
+
+  const folders = useSelector((state) => state.todos.todos);
 
   const showAllTasksHandler = () => {
     console.log('Show all tasks.');
@@ -17,7 +20,7 @@ export const Aside = ({ tasks, addFolderHandler }) => {
 
   return (
     <aside className={styles.aside}>
-      {!!tasks.length && (
+      {!!folders.length && (
         <Button
           type='button'
           className={styles.asideTasks}
@@ -30,7 +33,9 @@ export const Aside = ({ tasks, addFolderHandler }) => {
           Все задачи
         </Button>
       )}
-      <Tasks tasks={tasks} />
+
+      <Tasks folders={folders} />
+
       <div className={styles.asideWrapper}>
         <Button
           type='button'
@@ -39,10 +44,10 @@ export const Aside = ({ tasks, addFolderHandler }) => {
         >
           Добавить папку
         </Button>
+
         {showAddTask && (
           <AddTask
             setShowAddTask={setShowAddTask}
-            addFolderHandler={addFolderHandler}
             showAddTask={showAddTask}
           />
         )}
