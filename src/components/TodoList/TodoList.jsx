@@ -5,8 +5,6 @@ import styles from './TodoList.module.scss';
 export const TodoList = ({ todo }) => {
   const { tasks, title, color } = todo;
 
-  console.log(tasks);
-
   return (
     <div className={styles.tasks}>
       <h2

@@ -8,7 +8,6 @@ export const Main = () => {
   return (
     <main className={styles.main}>
       {!todos.length && <h2 className={styles.mainEmpty}>Задачи отсутствуют</h2>}
-      {/* {todos.checked && <TodoList />} */}
       {todos?.map(
         (todo) =>
           todo.checked && (
