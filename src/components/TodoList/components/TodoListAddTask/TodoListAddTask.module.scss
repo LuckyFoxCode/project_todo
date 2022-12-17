@@ -1,0 +1,30 @@
+@import 'main';
+
+.addTask {
+  width: 100%;
+  @include flex-col(flex-start, flex-start);
+
+  &Input {
+    width: 100%;
+    outline: none;
+    border: 1px solid #efefef;
+    border-radius: 4px;
+    padding: 9px 14px;
+    @include text(rem(14px), 400, #c7c7c7);
+    line-height: 120%;
+    letter-spacing: 0.15px;
+    margin-bottom: 15px;
+
+    &::placeholder {
+      color: #c7c7c7;
+    }
+  }
+
+  &Wrap {
+    display: flex;
+
+    &Btn {
+      margin-right: 10px;
+    }
+  }
+}

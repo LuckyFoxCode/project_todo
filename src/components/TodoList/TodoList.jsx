@@ -1,9 +1,18 @@
-import { Icon } from '../UI';
+import { useState } from 'react';
+import { Button, Icon } from '../UI';
+import { TodoListAddTask } from './components/TodoListAddTask/TodoListAddTask';
 import { TodoListItem } from './components/TodoListItem';
 import styles from './TodoList.module.scss';
 
 export const TodoList = ({ todo }) => {
   const { tasks, title, color } = todo;
+  const [showForm, setShowForm] = useState(false);
+  const [showAddTask, setShowAddTask] = useState(true);
+
+  const showAddTaskHandler = () => {
+    setShowForm((prevState) => !prevState);
+    setShowAddTask((prevState) => !prevState);
+  };
 
   return (
     <div className={styles.tasks}>
@@ -25,6 +34,22 @@ export const TodoList = ({ todo }) => {
           />
         ))}
       </ul>
+      {showAddTask && (
+        <Button
+          type='button'
+          icon='plus'
+          className={styles.addTask}
+          onClick={showAddTaskHandler}
+        >
+          Новая задача
+        </Button>
+      )}
+      {showForm && (
+        <TodoListAddTask
+          setShowAddTask={setShowAddTask}
+          setShowForm={setShowForm}
+        />
+      )}
     </div>
   );
 };

@@ -52,15 +52,25 @@ const todoSlice = createSlice({
       state.todos = state.todos.filter((todo) => todo.id !== action.payload.id);
     },
     checkedTodoFolder(state, action) {
-      // const checkedFolder = state.todos.find((todo) => todo.id === action.payload.id);
-      // checkedFolder.checked = !checkedFolder.checked;
-
       state.todos.filter((todo) =>
         todo.id === action.payload.id ? (todo.checked = !todo.checked) : todo,
       );
     },
+    addTodoTask(state, action) {
+      state.todos.filter((todo) => {
+        if (todo.checked === true) {
+          return todo.tasks.push({
+            id: new Date().toISOString(),
+            title: action.payload.title,
+            checked: false,
+          });
+        }
+        return todo;
+      });
+    },
   },
 });
 
-export const { addTodoFolder, checkedTodoFolder, removeTodoFolder } = todoSlice.actions;
+export const { addTodoFolder, checkedTodoFolder, removeTodoFolder, addTodoTask } =
+  todoSlice.actions;
 export default todoSlice.reducer;
