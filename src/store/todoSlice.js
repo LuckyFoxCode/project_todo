@@ -68,9 +68,17 @@ const todoSlice = createSlice({
         return todo;
       });
     },
+    removeTodoTask(state, action) {
+      state.todos.filter((todo) => {
+        if (todo.checked === true) {
+          return todo.tasks.filter((task) => task.id !== action.payload.id);
+        }
+        return todo;
+      });
+    },
   },
 });
 
-export const { addTodoFolder, checkedTodoFolder, removeTodoFolder, addTodoTask } =
+export const { addTodoFolder, checkedTodoFolder, removeTodoFolder, addTodoTask, removeTodoTask } =
   todoSlice.actions;
 export default todoSlice.reducer;

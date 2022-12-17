@@ -1,10 +1,13 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { removeTodoTask } from '../../../../store/todoSlice';
 import { Icon } from '../../../UI';
 import styles from '../../TodoList.module.scss';
 
 export const TodoListItem = ({ task }) => {
-  const { title, checked } = task;
+  const { title, checked, id } = task;
   const [isChecked, setIsChecked] = useState(false);
+  const dispatch = useDispatch();
 
   const toggleCheckedHandler = () => {
     setIsChecked((prevState) => !prevState);
@@ -25,6 +28,7 @@ export const TodoListItem = ({ task }) => {
         <Icon
           name='plus'
           className={styles.todoListItemWrapIcon}
+          onClick={() => dispatch(removeTodoTask({ title }))}
         />
       </div>
     </li>
